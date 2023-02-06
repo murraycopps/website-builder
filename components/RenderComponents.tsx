@@ -4,7 +4,7 @@ export default function RenderComponents({ node }: { node: ComponentNode }) {
   switch (node.type) {
     case "body":
       return (
-        <div className={node.props.className}>
+        <div className={node.props.className} style={node.props.style}>
           {node.children.map((childNode, i) => (
             <RenderComponents node={childNode} key={i} />
           ))}
@@ -12,7 +12,7 @@ export default function RenderComponents({ node }: { node: ComponentNode }) {
       );
     case "div":
       return (
-        <div className={node.props.className + " w-full h-full"}>
+        <div className={node.props.className + " w-full h-full"} style={node.props.style}>
           {node.children.map((childNode, i) => (
             <RenderComponents node={childNode} key={i} />
           ))}
@@ -20,7 +20,7 @@ export default function RenderComponents({ node }: { node: ComponentNode }) {
       );
     case "h1":
       return (
-        <h1 className={node.props.className}>
+        <h1 className={node.props.className} style={node.props.style}>
           {node.children.map((childNode, i) => (
             <RenderComponents node={childNode} key={i} />
           ))}
@@ -28,7 +28,7 @@ export default function RenderComponents({ node }: { node: ComponentNode }) {
       );
     case "h2":
       return (
-        <h2 className={node.props.className}>
+        <h2 className={node.props.className} style={node.props.style}>
           {node.children.map((childNode, i) => (
             <RenderComponents node={childNode} key={i} />
           ))}
@@ -36,7 +36,7 @@ export default function RenderComponents({ node }: { node: ComponentNode }) {
       );
     case "p":
       return (
-        <p className={node.props.className}>
+        <p className={node.props.className} style={node.props.style}>
           {node.children.map((childNode, i) => (
             <RenderComponents node={childNode} key={i} />
           ))}

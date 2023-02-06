@@ -31,10 +31,13 @@ export default function EditComponent({
 
     const foundNode = findNode(node, index);
     if (!foundNode) return;
+    
     console.log(index);
+
     printNode(node, 0);
     printNode(foundNode, 0);
     setCurrentNode(foundNode);
+
   }, [index, node]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -54,6 +57,9 @@ export default function EditComponent({
       props: {
         ...currentNode.props,
         className,
+        style: {
+          ...currentNode.props.style,
+        },
       },
       text,
     });
@@ -67,6 +73,9 @@ export default function EditComponent({
       props: {
         ...currentNode.props,
         className,
+        style: {
+          ...currentNode.props.style,
+        },
       },
       text,
     });
@@ -87,6 +96,7 @@ export default function EditComponent({
 
   function addChild(type: string) {
     setShowChild(false);
+    if (currentNode.type === "text") return;
     const findMaxIndex = (node: ComponentNode): number => {
       let maxIndex = node.index;
       node.children.forEach((childNode) => {
@@ -224,7 +234,7 @@ export default function EditComponent({
         </div>
       </form>
       {showChild && (
-        <div className="absolute inset-0 flex flex-col justify-center w-full h-full gap-8 bg-white">
+        <div className="absolute inset-0 flex flex-col justify-center w-full h-full gap-8 bg-gray-50">
           <h1 className="text-2xl">Add Child</h1>
           <AddChildCard addChild={addChild} />
         </div>

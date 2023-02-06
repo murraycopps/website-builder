@@ -3,7 +3,7 @@ import { ComponentNode } from "@/scripts/types";
 export default function RenderHTML({ node }: { node: ComponentNode }) {
   if (node.type === "body") {
     return (
-      <div className="p-4">
+      <div className="p-4 border-gray-800 border-r-8 h-full">
         {"<!DOCTYPE html>"}
         <br />
         <br />

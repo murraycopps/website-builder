@@ -14,6 +14,7 @@ export default function IndexPage() {
     props: {
       className: "body w-full h-full",
         bgClass: "gray-800",
+      textColor: "white",
     },
     children: [
       {
@@ -26,7 +27,6 @@ export default function IndexPage() {
             type: "h1",
             props: {
               className: "text-4xl",
-              textColor: "white",
             },
             children: [
               {

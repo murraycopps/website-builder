@@ -243,22 +243,24 @@ export default function EditComponent({
                             />
                         </>
                     )}
-                    <div className="flex flex-row justify-center gap-8">
-                        <button
-                            className="p-2 flex-1 text-white bg-yellow-500 rounded-full"
-                            type="button"
-                            onClick={() => setChangeBgColor(true)}
-                        >
-                            Change Background
-                        </button>
-                        <button
-                            className="p-2 flex-1 text-white bg-yellow-500 rounded-full"
-                            type="button"
-                            onClick={() => setChangeTextColor(true)}
-                        >
-                            Change Text Color
-                        </button>
-                    </div>
+                    {currentNode.type !== "text" && (
+                        <div className="flex flex-row justify-center gap-8">
+                            <button
+                                className="p-2 flex-1 text-white bg-yellow-500 rounded-full"
+                                type="button"
+                                onClick={() => setChangeBgColor(true)}
+                            >
+                                Change Background
+                            </button>
+                            <button
+                                className="p-2 flex-1 text-white bg-yellow-500 rounded-full"
+                                type="button"
+                                onClick={() => setChangeTextColor(true)}
+                            >
+                                Change Text Color
+                            </button>
+                        </div>
+                    )}
                 </>)}
 
                 {changeBgColor && <ColorCard setColor={setBgColor}/>}

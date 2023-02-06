@@ -34,6 +34,15 @@ export default function IndexPage() {
                 index: 3,
                 text: "Hello World",
               },
+              {
+                type: "div",
+                props: {
+                  className: "text",
+                },
+                children: [],
+                index: 4,
+                text: "Hello World",
+              }
             ],
             index: 2,
           },
@@ -54,9 +63,9 @@ export default function IndexPage() {
       node.children.forEach((childNode) => printNode(childNode, spaces + 2));
     }
     
-    console.log("componentNode");
+    // console.log("componentNode");
     
-    printNode(componentNode, 0)
+    // printNode(componentNode, 0)
 
     setCurrentNode(findNode(componentNode, currentIndex));
   }, [currentIndex, componentNode]);

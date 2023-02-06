@@ -29,14 +29,14 @@ export default function RenderComponents({ node }: { node: ComponentNode }) {
           ))}
         </h1>
       );
-    case "span":
+    case "h2":
       return (
-        <span className={node.props.className}>
+        <h2 className={node.props.className}>
           {node.text || ""}
           {node.children.map((childNode, i) => (
             <RenderComponents node={childNode} key={i} />
           ))}
-        </span>
+        </h2>
       );
     case "p":
       return (
@@ -46,6 +46,17 @@ export default function RenderComponents({ node }: { node: ComponentNode }) {
             <RenderComponents node={childNode} key={i} />
           ))}
         </p>
+      );
+    case "br":
+      return <br />;
+    case "button":
+      return (
+        <button className={node.props.className} onClick={node.props.onClick}>
+          {node.text || ""}
+          {node.children.map((childNode, i) => (
+            <RenderComponents node={childNode} key={i} />
+          ))}
+        </button>
       );
     default:
       return null;

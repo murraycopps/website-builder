@@ -22,8 +22,8 @@ export default function RenderComponentList({
   }, [index, node]);
 
   return (
-    <ul className="p-4" ref={listRef}>
-      {parentNode && (
+    <ul className="pl-4" ref={listRef}>
+      {/* {parentNode && (
         <li
           key={parentNode.index}
           onClick={() => setIndex(parentNode.index)}
@@ -31,17 +31,24 @@ export default function RenderComponentList({
         >
           {parentNode.type}
         </li>
-      )}
+      )} */}
 
-      <li
+      {/* <li
         key={currentNode.index}
         onClick={() => setIndex(currentNode.index)}
         className="ml-4 font-bold"
       >
         {currentNode.type}
+      </li> */}
+      <li
+        key={node.index}
+        onClick={() => setIndex(node.index)}
+        className={node.index === index ? "font-bold" : ""}
+      >
+        {node.type}
       </li>
 
-      {currentNode.children.map((childNode) => (
+      {/* {currentNode.children.map((childNode) => (
         <li
           key={childNode.index}
           onClick={() => setIndex(childNode.index)}
@@ -49,9 +56,17 @@ export default function RenderComponentList({
         >
           {childNode.type}
         </li>
+      ))} */}
+{node.children.map((childNode) => (
+        <RenderComponentList
+            key={childNode.index}
+            node={childNode}
+            index={index}
+            setIndex={setIndex}
+            listRef={listRef}
+        />
       ))}
-
-      {parentNode &&
+      {/* {parentNode &&
         parentNode.children
           .filter((childNode) => childNode.index !== index)
           .map((childNode) => (
@@ -62,7 +77,7 @@ export default function RenderComponentList({
             >
               {childNode.type}
             </li>
-          ))}
+          ))} */}
     </ul>
   );
 }

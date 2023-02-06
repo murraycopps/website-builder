@@ -12,7 +12,7 @@ export default function RenderComponents({ node }: { node: ComponentNode }) {
       );
     case "div":
       return (
-        <div className={node.props.className}>
+        <div className={node.props.className + " w-full h-full"}>
           {node.children.map((childNode, i) => (
             <RenderComponents node={childNode} key={i} />
           ))}

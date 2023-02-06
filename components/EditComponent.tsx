@@ -45,7 +45,7 @@ export default function EditComponent({
     const type = formData.get("type") as string;
     const className = formData.get("class") as string;
 
-    const text = formData.get("text") as string;
+    const text = (formData.get("text") as string) || "";
 
     // console.log("currentNode", currentNode);
     const newNode = updateChildNode(node, index, {
@@ -55,6 +55,7 @@ export default function EditComponent({
         ...currentNode.props,
         className,
       },
+      text,
     });
     if (!newNode) return;
 
@@ -67,6 +68,7 @@ export default function EditComponent({
         ...currentNode.props,
         className,
       },
+      text,
     });
 
     const printNode = (node: ComponentNode, spaces: number) => {
@@ -105,6 +107,7 @@ export default function EditComponent({
             className: "",
           },
           children: [],
+          text: "",
         },
       ],
     });
@@ -122,6 +125,7 @@ export default function EditComponent({
             className: "",
           },
           children: [],
+          text: "",
         },
       ],
     });
@@ -149,6 +153,9 @@ export default function EditComponent({
       return;
     }
     const newNode = deleteChildNode(node, index);
+
+    if (!newNode) return;
+
     setNode({ ...newNode });
   }
 
@@ -169,17 +176,8 @@ export default function EditComponent({
           name="type"
           defaultValue={currentNode.type}
         />
-        <label id="class" htmlFor="class" className="ml-4 mr-2">
-          Class
-        </label>
-        <input
-          type="text"
-          name="class"
-          id="class"
-          defaultValue={currentNode.props.className}
-        />
 
-        {currentNode.type === "text" && (
+        {currentNode.type === "text" ? (
           <>
             <label htmlFor="text" className="ml-4 mr-2">
               Text
@@ -189,6 +187,18 @@ export default function EditComponent({
               name="text"
               id="text"
               defaultValue={currentNode.text}
+            />
+          </>
+        ) : (
+          <>
+            <label id="class" htmlFor="class" className="ml-4 mr-2">
+              Class
+            </label>
+            <input
+              type="text"
+              name="class"
+              id="class"
+              defaultValue={currentNode.props.className}
             />
           </>
         )}
@@ -289,5 +299,5 @@ function deleteChildNode(node: ComponentNode, targetIndex: number) {
       return node;
     }
   }
-  return node;
+  return null;
 }

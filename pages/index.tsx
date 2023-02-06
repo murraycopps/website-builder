@@ -26,21 +26,12 @@ export default function IndexPage() {
             },
             children: [
               {
-                type: "p",
+                type: "text",
                 props: {
                   className: "text",
                 },
                 children: [],
                 index: 3,
-                text: "Hello World",
-              },
-              {
-                type: "div",
-                props: {
-                  className: "text",
-                },
-                children: [],
-                index: 4,
                 text: "Hello World",
               }
             ],
@@ -71,14 +62,14 @@ export default function IndexPage() {
   }, [currentIndex, componentNode]);
 
   return (
-    <div className="grid w-screen h-screen grid-cols-2">
+    <div className="grid w-screen h-screen grid-cols-3">
       <Head>
         <link
           href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css"
           rel="stylesheet"
         />
       </Head>
-      <div className="">
+      <div className="col-span-2">
         <RenderComponents node={componentNode} />
       </div>
       <div className="flex flex-col gap-4 p-4">

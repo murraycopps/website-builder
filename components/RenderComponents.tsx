@@ -4,7 +4,7 @@ export default function RenderComponents({ node }: { node: ComponentNode }) {
   switch (node.type) {
     case "body":
       return (
-        <div className={node.props.className} style={node.props.style}>
+        <div className={`${node.props.className} bg-${node.props.bgClass} text-${node.props.textColor}`}>
           {node.children.map((childNode, i) => (
             <RenderComponents node={childNode} key={i} />
           ))}
@@ -12,7 +12,7 @@ export default function RenderComponents({ node }: { node: ComponentNode }) {
       );
     case "div":
       return (
-        <div className={node.props.className + " w-full h-full"} style={node.props.style}>
+        <div className={`${node.props.className} bg-${node.props.bgClass} text-${node.props.textColor}`}>
           {node.children.map((childNode, i) => (
             <RenderComponents node={childNode} key={i} />
           ))}
@@ -20,7 +20,7 @@ export default function RenderComponents({ node }: { node: ComponentNode }) {
       );
     case "h1":
       return (
-        <h1 className={node.props.className} style={node.props.style}>
+        <h1 className={`${node.props.className} bg-${node.props.bgClass} text-${node.props.textColor}`}>
           {node.children.map((childNode, i) => (
             <RenderComponents node={childNode} key={i} />
           ))}
@@ -28,7 +28,7 @@ export default function RenderComponents({ node }: { node: ComponentNode }) {
       );
     case "h2":
       return (
-        <h2 className={node.props.className} style={node.props.style}>
+        <h2 className={`${node.props.className} bg-${node.props.bgClass} text-${node.props.textColor}`}>
           {node.children.map((childNode, i) => (
             <RenderComponents node={childNode} key={i} />
           ))}
@@ -36,7 +36,7 @@ export default function RenderComponents({ node }: { node: ComponentNode }) {
       );
     case "p":
       return (
-        <p className={node.props.className} style={node.props.style}>
+        <p className={`${node.props.className} bg-${node.props.bgClass} text-${node.props.textColor}`}>
           {node.children.map((childNode, i) => (
             <RenderComponents node={childNode} key={i} />
           ))}
@@ -46,7 +46,7 @@ export default function RenderComponents({ node }: { node: ComponentNode }) {
       return <br />;
     case "button":
       return (
-        <button className={node.props.className} onClick={node.props.onClick}>
+        <button className={`${node.props.className} bg-${node.props.bgClass} text-${node.props.textColor}`} onClick={node.props.onClick}>
           {node.children.map((childNode, i) => (
             <RenderComponents node={childNode} key={i} />
           ))}

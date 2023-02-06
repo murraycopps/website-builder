@@ -16,7 +16,7 @@ export default function RenderHTML({ node }: { node: ComponentNode }) {
           {"</head>"}
         <br />
           <br />
-          {`<body class="${node.props.className}">`}
+          {`<body class="${node.props.className} bg-${node.props.bgClass} text-${node.props.textColor}">`}
           <div className="ml-4">
             {node.children.map((childNode, i) => (
               <RenderHTML node={childNode} key={i} />
@@ -35,7 +35,7 @@ export default function RenderHTML({ node }: { node: ComponentNode }) {
 
   return (
     <div>
-      {`<${node.type} class="${node.props.className}">`}
+      {`<${node.type} class="${node.props.className} bg-${node.props.bgClass} text-${node.props.textColor}">`}
       <div className="ml-4">
         {node.children.map((childNode, i) => (
           <RenderHTML node={childNode} key={i} />

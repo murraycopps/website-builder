@@ -12,7 +12,8 @@ export default function IndexPage() {
   const [componentNode, setComponentNode] = useState<ComponentNode>({
     type: "body",
     props: {
-      className: "body bg-gray-800 w-full h-full",
+      className: "body w-full h-full",
+        bgClass: "gray-800",
     },
     children: [
       {
@@ -24,7 +25,8 @@ export default function IndexPage() {
           {
             type: "h1",
             props: {
-              className: "text-4xl text-white",
+              className: "text-4xl",
+              textColor: "white",
             },
             children: [
               {
@@ -80,7 +82,7 @@ export default function IndexPage() {
         {showHTML ? (
           <RenderHTML node={componentNode} />
         ) : (
-          <RenderComponents node={currentNode} />
+          <RenderComponents node={componentNode} />
         )}
       </div>
       <div className="flex flex-col gap-4 p-4">

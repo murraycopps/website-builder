@@ -1,5 +1,6 @@
 import { ComponentNode } from "@/scripts/types";
 import { useState, useEffect, useRef, ReactEventHandler } from "react";
+import AddChildCard from "./AddChildCard";
 
 export default function EditComponent({
   node,
@@ -13,6 +14,7 @@ export default function EditComponent({
   const [currentNode, setCurrentNode] = useState<ComponentNode>(
     findNode(node, index) || node
   );
+  const [showChild, setShowChild] = useState(false);
 
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -53,7 +55,6 @@ export default function EditComponent({
         ...currentNode.props,
         className,
       },
-      text,
     });
     if (!newNode) return;
 
@@ -66,7 +67,6 @@ export default function EditComponent({
         ...currentNode.props,
         className,
       },
-      text,
     });
 
     const printNode = (node: ComponentNode, spaces: number) => {
@@ -83,7 +83,8 @@ export default function EditComponent({
     if (formRef.current) formRef.current.reset();
   };
 
-  function addChild() {
+  function addChild(type: string) {
+    setShowChild(false);
     const findMaxIndex = (node: ComponentNode): number => {
       let maxIndex = node.index;
       node.children.forEach((childNode) => {
@@ -98,7 +99,7 @@ export default function EditComponent({
       children: [
         ...currentNode.children,
         {
-          type: "div",
+          type,
           index: maxIndex + 1,
           props: {
             className: "",
@@ -136,17 +137,15 @@ export default function EditComponent({
           className: node.props.className,
         },
         children: [],
-        text: "",
       });
       setCurrentNode({
         type: "body",
         index: 0,
         props: {
-            className: node.props.className,
+          className: node.props.className,
         },
         children: [],
-        text: "",
-        });
+      });
       return;
     }
     const newNode = deleteChildNode(node, index);
@@ -154,10 +153,8 @@ export default function EditComponent({
   }
 
   return (
-    <div className="p-4 grow">
-      <h1 className="text-2xl">
-        Edit Component
-      </h1>
+    <div className="relative p-4 grow">
+      <h1 className="text-2xl">Edit Component</h1>
       <form
         ref={formRef}
         className="flex flex-col justify-start w-full h-full gap-8"
@@ -182,15 +179,19 @@ export default function EditComponent({
           defaultValue={currentNode.props.className}
         />
 
-        <label htmlFor="text" className="ml-4 mr-2">
-          Text
-        </label>
-        <input
-          type="text"
-          name="text"
-          id="text"
-          defaultValue={currentNode.text}
-        />
+        {currentNode.type === "text" && (
+          <>
+            <label htmlFor="text" className="ml-4 mr-2">
+              Text
+            </label>
+            <input
+              type="text"
+              name="text"
+              id="text"
+              defaultValue={currentNode.text}
+            />
+          </>
+        )}
 
         <button className="p-2 bg-blue-500 rounded-full" type="submit">
           Save
@@ -199,7 +200,7 @@ export default function EditComponent({
           <button
             className="flex-1 p-2 text-white bg-green-500 rounded-full"
             type="submit"
-            onClick={addChild}
+            onClick={() => setShowChild(true)}
           >
             Add Child
           </button>
@@ -212,6 +213,12 @@ export default function EditComponent({
           </button>
         </div>
       </form>
+      {showChild && (
+        <div className="absolute inset-0 flex flex-col justify-center w-full h-full gap-8 bg-white">
+          <h1 className="text-2xl">Add Child</h1>
+          <AddChildCard addChild={addChild} />
+        </div>
+      )}
     </div>
   );
 }

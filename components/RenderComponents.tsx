@@ -5,7 +5,6 @@ export default function RenderComponents({ node }: { node: ComponentNode }) {
     case "body":
       return (
         <div className={node.props.className}>
-          {node.text || ""}
           {node.children.map((childNode, i) => (
             <RenderComponents node={childNode} key={i} />
           ))}
@@ -14,7 +13,6 @@ export default function RenderComponents({ node }: { node: ComponentNode }) {
     case "div":
       return (
         <div className={node.props.className}>
-          {node.text || ""}
           {node.children.map((childNode, i) => (
             <RenderComponents node={childNode} key={i} />
           ))}
@@ -23,7 +21,6 @@ export default function RenderComponents({ node }: { node: ComponentNode }) {
     case "h1":
       return (
         <h1 className={node.props.className}>
-          {node.text || ""}
           {node.children.map((childNode, i) => (
             <RenderComponents node={childNode} key={i} />
           ))}
@@ -32,7 +29,6 @@ export default function RenderComponents({ node }: { node: ComponentNode }) {
     case "h2":
       return (
         <h2 className={node.props.className}>
-          {node.text || ""}
           {node.children.map((childNode, i) => (
             <RenderComponents node={childNode} key={i} />
           ))}
@@ -41,7 +37,6 @@ export default function RenderComponents({ node }: { node: ComponentNode }) {
     case "p":
       return (
         <p className={node.props.className}>
-          {node.text || ""}
           {node.children.map((childNode, i) => (
             <RenderComponents node={childNode} key={i} />
           ))}
@@ -52,12 +47,13 @@ export default function RenderComponents({ node }: { node: ComponentNode }) {
     case "button":
       return (
         <button className={node.props.className} onClick={node.props.onClick}>
-          {node.text || ""}
           {node.children.map((childNode, i) => (
             <RenderComponents node={childNode} key={i} />
           ))}
         </button>
       );
+      case "text":
+        return <>{node.text}</>
     default:
       return null;
   }

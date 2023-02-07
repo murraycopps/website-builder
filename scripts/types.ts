@@ -6,4 +6,13 @@ type ComponentNode = {
     text?: string;
 };
 
-export type { ComponentNode };
+type LayoutProps = {
+    display: string;
+    position: string;
+    centerChildren: boolean;
+    rows?: number;
+    columns?: number;
+    gap?: number;
+}
+
+export type { ComponentNode, LayoutProps };

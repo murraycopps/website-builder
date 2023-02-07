@@ -13,26 +13,30 @@ export default function IndexPage() {
     type: "body",
     props: {
       className: "body w-full h-full",
-        bgClass: "gray-800",
+      bgClass: "gray-800",
+      layoutClasses: ["block", "static"],
       textColor: "white",
     },
     children: [
       {
         type: "div",
         props: {
-          className: "w-full h-full",
+          className: "",
+          layoutClasses: ["block", "static"],
         },
         children: [
           {
             type: "h1",
             props: {
               className: "text-4xl",
+              layoutClasses: ["block", "static"],
             },
             children: [
               {
                 type: "text",
                 props: {
                   className: "text",
+                  layoutClasses: ["block", "static"],
                 },
                 children: [],
                 index: 3,

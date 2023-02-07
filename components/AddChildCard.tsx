@@ -1,4 +1,3 @@
-import { ComponentNode } from "@/scripts/types";
 import { useState } from "react";
 
 export default function AddCildCard({
@@ -19,5 +18,5 @@ export default function AddCildCard({
       </select>
       <button onClick={() => addChild(type)}>Add</button>
     </div>
-  );
+  )
 }

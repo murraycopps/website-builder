@@ -13,8 +13,8 @@ export default function RenderComponents({ node }: { node: ComponentNode }) {
         : ""
     }
     ${
-      node.props.layoutProps?.display.includes("grid")
-        ? node.props.layoutProps?.rows + " " + node.props.layoutProps?.columns
+      node.props.layoutProps?.display?.includes("grid")
+        ? `grid-rows-${node.props.layoutProps?.rows === 0 ? 'none' : node.props.layoutProps?.rows}  grid-cols-${node.props.layoutProps?.columns === 0 ? 'none' : node.props.layoutProps?.columns}`
         : ""
     }
     `;

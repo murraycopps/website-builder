@@ -13,6 +13,8 @@ type LayoutProps = {
     rows?: number;
     columns?: number;
     gap?: number;
+    fullWidth?: boolean;
+    fullHeight?: boolean;
 }
 
 export type { ComponentNode, LayoutProps };

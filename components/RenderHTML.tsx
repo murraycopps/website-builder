@@ -1,23 +1,8 @@
 import { ComponentNode } from "@/scripts/types";
+import { generateClassName } from "@/scripts";
 
 export default function RenderHTML({ node }: { node: ComponentNode }) {
-    const className = `
-    ${node.props.className}
-    bg-${node.props.bgClass}
-    text-${node.props.textColor}
-    ${node.props.layoutProps?.display || "block"} 
-    ${node.props.layoutProps?.position || "static"}
-    ${
-        node.props.layoutProps?.centerChildren
-            ? "place-content-center place-items-center items-center content-center justify-center"
-            : ""
-    }
-    ${
-        node.props.layoutProps?.display?.includes("grid")
-            ? `grid-rows-${node.props.layoutProps?.rows === 0 ? 'none' : node.props.layoutProps?.rows}  grid-cols-${node.props.layoutProps?.columns === 0 ? 'none' : node.props.layoutProps?.columns}`
-            : ""
-    }
-    `;
+    const className = generateClassName(node);
 
   if (node.type === "body") {
     return (
@@ -25,10 +10,16 @@ export default function RenderHTML({ node }: { node: ComponentNode }) {
         {"<!DOCTYPE html>"}
         <br />
         <br />
-        {"<html>"}
+        {"<html lang='en'>"}
         <div className="my-4 ml-4">
           {"<head>"}
           <div className="ml-4">
+              {"<meta charset='UTF-8' />"}
+                <br />
+                {"<meta name='viewport' content='width=device-width, initial-scale=1.0' />"}
+                <br />
+                {"<title>Document</title>"}
+                <br />
             {`<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet" />`}
           </div>
           {"</head>"}
